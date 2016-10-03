@@ -1,0 +1,88 @@
+@import "bootstrap";
+
+// header bar
+.nav-center{
+  margin: 0 auto;
+  width: 50%;
+}
+
+.nav-right-part{
+  float: right;
+}
+
+.navbar-inner{
+  img{
+    clear: none;
+    float: left;
+  }
+  .brand{
+    font-size: 20px;
+    //padding-top: 13px;
+  }
+}
+
+
+// footer
+footer {
+  margin-top: 40%;
+  padding-top: 5px;
+  border-top: 3px solid #eaeaea;
+  color: $grayLight;
+  .footer-center{
+    width: 50%;
+    margin: 0 auto;
+  }
+  a {
+    color: $gray;
+    &:hover {
+      color: $grayDarker;
+    }
+  }
+  small {
+    float: left;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 10px;
+      font-size: 14px;
+    }
+  }
+}
+
+// home
+
+.content-area{
+  text-align: center;
+  margin-left: 25%;
+  margin-right: 25%;
+  position: relative;
+}
+
+.linkbox {
+  top: 10%;
+  height: 100%;
+  width: 100%;
+  margin-top: 30%;
+  clear: none;
+  float: left;
+  form{
+    width: 100%;
+    padding: 10px;
+  }
+  label {
+    font-size: 18px;
+    display: inline;
+  }
+  input {
+    width: 70%;
+    height: 23px;
+  }
+  button{
+    width: 100px;
+    height: 33px;
+  }
+}
+

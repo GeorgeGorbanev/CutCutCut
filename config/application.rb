@@ -11,5 +11,7 @@ module CutCutCut
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+    # M. Hartl: this string must make bootstrap work
+    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
   end
 end
