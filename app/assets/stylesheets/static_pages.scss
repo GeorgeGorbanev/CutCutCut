@@ -1,3 +1,43 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.linkbox {
+  background-color: #EEEEEE;
+  border-radius: 10px;
+  top: 10%;
+  height: 60px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 30%;
+  margin-bottom: 40%;
+  form{
+    width: 100%;
+    padding: 10px;
+  }
+  label {
+    font-size: 18px;
+    display: inline;
+  }
+  input {
+    width: 70%;
+    height: 23px;
+  }
+  button{
+    width: 100px;
+    height: 33px;
+  }
+}
+
+.jumbotron{
+  border-radius: 20px;
+  padding: 40px;
+  padding-top: 10px;
+  text-align: left;
+  h1{
+    font-size: 25px;
+  }
+  p{
+
+  }
+}

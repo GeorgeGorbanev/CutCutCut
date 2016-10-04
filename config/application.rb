@@ -12,6 +12,8 @@ module CutCutCut
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     # M. Hartl: this string must make bootstrap work
+    config.assets.precompile += [ 'application.js', 'variable.js', 'custom.js']
+    config.assets.precompile += [ 'application.css', 'variable.css', 'custom.css']
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
   end
 end

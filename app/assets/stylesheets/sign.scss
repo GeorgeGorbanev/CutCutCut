@@ -1,0 +1,49 @@
+// Place all the styles related to the sign controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.signform{
+  width: 350px;
+  height: 230px;
+  background-color: #DDDDDD;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-top: 20%;
+  margin-bottom: 20%;
+  padding-top: 5px;
+  form{
+    margin: 5px auto;
+    width: 250px;
+    input{
+      margin-top: 10px;
+    }
+  }
+  button{
+    width: 220px;
+    margin: 0 auto;
+    margin-top: 15px;
+  }
+}
+
+.signup{
+  width: 350px;
+  height: 320px;
+  background-color: #DDDDDD;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-top: 20%;
+  margin-bottom: 10%;
+  padding-top: 5px;
+  form{
+    margin: 5px auto;
+    width: 250px;
+    input{
+      margin-top: 10px;
+    }
+  }
+  button{
+    width: 220px;
+    margin: 0 auto;
+    margin-top: 15px;
+  }
+}
