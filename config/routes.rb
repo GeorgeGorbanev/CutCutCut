@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  get 'sign/signup'
 
-  get 'sign/signin'
+  devise_for :users, controllers: { sessions: 'users/sessions' }
 
   root to: 'static_pages#home'
 
@@ -11,5 +10,18 @@ Rails.application.routes.draw do
 
   get 'contact' => "static_pages#contact"
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'persons/profile', as: 'user_root'
+
+  get 'tools/public'
+
+  get 'tools/private'
+
+  get 'sign/signup'
+
+  get 'sign/signin'
+
+  get 'users/sign_out' => "sessions#destroy"
+
 end
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+

@@ -15,5 +15,6 @@ module CutCutCut
     config.assets.precompile += [ 'application.js', 'variable.js', 'custom.js']
     config.assets.precompile += [ 'application.css', 'variable.css', 'custom.css']
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+    config.assets.initialize_on_precompile = false
   end
 end

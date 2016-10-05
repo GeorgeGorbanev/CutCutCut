@@ -23,6 +23,7 @@
 
 // footer
 footer {
+  margin-top: 10%;
   padding-top: 5px;
   border-top: 3px solid #eaeaea;
   color: $gray-light;
@@ -58,6 +59,48 @@ footer {
   margin-right: 25%;
   position: relative;
   display: block;
+}
+
+.sign{
+  width: 350px;
+  height: 290px;
+  background-color: #DDDDDD;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-top: 20%;
+  padding-top: 5px;
+  .signup{
+    height: 290px;
+  }
+  .signin{
+    height: 690px;
+  }
+  form{
+    margin: 5px auto;
+    width: 250px;
+  }
+  .form-control{
+    margin-top: 10px;
+  }
+  .btn-lg{
+    width: 220px;
+    margin: 0 auto;
+    margin-top: 15px;
+  }
+}
+
+.alertsign{
+  margin: 0 auto;
+  width: 350px;
+  height: auto;
+  border-color: #B00100;
+  background-color: #e9854b;
+  font-size: 12px;
+  color: red;
+  width: 250px;
+  h2{
+    font-size: 15px;
+  }
 }
 
 
