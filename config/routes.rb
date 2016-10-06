@@ -10,15 +10,11 @@ Rails.application.routes.draw do
 
   get 'contact' => "static_pages#contact"
 
-  get 'persons/profile', as: 'user_root'
+  get 'tools/public' => "tools#public"
 
-  get 'tools/public'
+  get 'tools/private' => "tools#private"
 
-  get 'tools/private'
-
-  get 'sign/signup'
-
-  get 'sign/signin'
+  #get 'persons/profile', as: 'user_root'
 
   get 'users/sign_out' => "sessions#destroy"
 
