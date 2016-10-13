@@ -1,8 +1,9 @@
 <% provide(:title, '') %>
 <div class="linkbox">
- <form class="navbar-form pull-left">
-   <label>Link: </label>
-   <input type="text" class="span2">
-   <button type="submit" class="btn">Cut!</button>
- </form>
+ <%= form_tag("../links/generate_anon", id: "new_link", method: "get", remote: true) do %>
+   <%= label_tag(:input_link, "Link: ") %>
+   <%= text_field_tag(:input_link) %>
+      <%= submit_tag("Cut", class: "btn", id: "anon_cut_submit") %>
+ <% end %>
+  <p id = "result_new_link">  </p>
 </div>

@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+anon_user = User.new  :id => 1,
+            :email => "ACTUAL@NOT.EMAIL",
+            :encrypted_password =>  "ACTUAL_NOT_PASSWORD",
+            :sign_in_count => 1,
+            :created_at => Time.now,
+            :updated_at => Time.now
+
+anon_user.save(validate: false)
