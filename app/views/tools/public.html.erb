@@ -3,5 +3,24 @@
   <li role="presentation"><a href="/tools/private">Private</a></li>
 </ul>
 <div class = "tools-area">
+  <p>You can find here information about every public created link in data base.
+    To make your link statistics private you need to
+    <a href="<%= new_user_session_path %> "> sign in</a>.</p>
+  <%= form_tag("../links/generate_anon", id: "new_link", method: "get", remote: true) do %>
+      <%= label_tag(:input_link, "Find by ") %>
+      <span class = "radiobtn">
+       <%= radio_button_tag :search_column, "parent"%> parent link
+       <%= radio_button_tag :search_column, "child" %> child link
+      </span>
+      <%= text_field_tag(:input_link) %>
+      <%= submit_tag("Search", class: "btn", id: "anon_cut_submit") %>
+  <% end %>
 
+  <table>
+    <% for i in 1..10%>
+    <tr class="<% if (i%2 == 0)%>even"><% else %>uneven"><% end%>
+    <td>1</td> <td>2</td> <td>3</td>
+    </tr>
+    <%end%>
+  </table>
 </div>

@@ -2,5 +2,39 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .tools-area{
-  background-color: #EEEEEE;
+  background-color: white;
+  color: #555555;
+  h1{
+    font: 16pt Helvetica;
+  }
+  p{
+    text-align: left;
+    padding: 25px;
+    font: 14pt Helvetica;
+  }
+  .radiobtn{
+    font-size: 12pt;
+  }
+  table{
+    width: 90%;
+    margin-right: 5%;
+    margin-left: 5%;
+    margin-top: 20px;
+    tr{
+      height: 30px;
+    }
+    td{
+      width: 33%;
+      border-left: 2px;
+    }
+
+  }
+  .even{
+     background: #DDDDDD;
+   }
+  .uneven{
+    background:  #EEEEEE;
+  }
+
+
 }

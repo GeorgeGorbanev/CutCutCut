@@ -10,7 +10,12 @@ class LinksController < ApplicationController
     Link.create :new_link => @generated_link,
                 :parent_link => params[:input_link],
                 :user_id => 1
-    render plain: params[:input_link] + " => " + @generated_link + "<br/>"
+    render plain: params[:input_link] + " => " + root_url + @generated_link + "<br/>"
+  end
+
+  def redirect_user_link
+      requested_link = Link.find_by new_link: params[:path]
+      redirect_to requested_link.parent_link
   end
 
 end
