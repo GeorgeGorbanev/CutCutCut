@@ -1,3 +1,61 @@
 // Place all the styles related to the links controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.tools-area{
+  padding: 20px;
+  background-color: white;
+  color: #555555;
+  .searchfield{
+    width: 55%;
+  }
+  h1{
+    padding-left: 20px;
+    text-align: left;
+    font: 16pt Helvetica;
+  }
+  h2{
+    padding-left: 20px;
+    text-align: left;
+    font: 12pt Helvetica;
+  }
+  p{
+    text-align: left;
+    padding: 25px;
+    padding-bottom: 5px;
+    font: 14pt Helvetica;
+  }
+  .radiobtn{
+    font-size: 12pt;
+  }
+  table{
+    border-color: #DDDDDD;
+    width: 95%;
+    margin-right: 2.5%;
+    margin-left: 2.5%;
+    margin-top: 20px;
+    th{
+      text-align: left;
+      padding-left: 10px;
+    }
+    tr{
+      height: 30px;
+    }
+    td{
+      padding-left: 10px;
+      text-align: left;
+      border-left: 2px;
+    }
+  }
+
+  .paginator{
+    font-size: 12px;
+    text-align: left;
+  }
+
+  .even{
+    background: #DDDDDD;
+  }
+  .uneven{
+    background:  #EEEEEE;
+  }
+}

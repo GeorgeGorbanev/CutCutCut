@@ -10,15 +10,15 @@ Rails.application.routes.draw do
 
   get 'contact' => "static_pages#contact"
 
-  get 'tools/public' => "tools#public"
+  get 'links/public' => "links#public"
 
-  get 'tools/private' => "tools#private"
-
-  #get 'persons/profile', as: 'user_root'
+  get 'links/private' => "links#private"
 
   get 'users/sign_out' => "sessions#destroy"
 
   get 'links/generate_anon' => "links#generate_anon"
+
+  get 'links/public_search' => "links#public_search"
 
   get '*path' => "links#redirect_user_link"
 

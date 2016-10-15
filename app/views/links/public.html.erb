@@ -1,0 +1,41 @@
+<% provide(:title, 'Public tools') %>
+<ul class="nav nav-tabs">
+  <li role="presentatuion" class="active"><a>Public</a></li>
+  <li role="presentation"><a href="/links/private">Private</a></li>
+</ul>
+<div class = "tools-area">
+    <p>You can find here information about every public created link in data base.
+    To make your link statistics private you need to
+    <a href="<%= new_user_session_path %> "> sign in</a>.</p>
+  <%= form_tag("../links/public_search", id: "link", method: "get", remote: true) do %>
+      <%= label_tag(:input_link, "Find by ") %>
+      <span class = "radiobtn">
+       <%= radio_button_tag :search_column, "parent", checked: true%> parent link
+        <%= radio_button_tag :search_column, "child" %> child link
+      </span>
+      <span class = "searchfield">
+      <%= text_field_tag(:input_link, nil, class: 'searchfield') %>
+      </span>
+      <%= submit_tag("Search", class: "btn", id: "public_search_submit") %>
+  <% end %>
+  <h1>Last links</h1>
+  <table>
+    <th width="auto">Parent link</th>
+    <th width="170px%">Child link</th>
+    <th width="70px">Clicks</th>
+    <th width="150px">Created</th>
+    <th width="40px"></th>
+    <% for i in 0..9%>
+    <tr class="<% if (i%2 != 0)%>even"><% else %>uneven"><% end%>
+    <td><%= @public_records[i].parent_link %></td>
+    <td><%= root_url + @public_records[i].new_link %></td>
+    <td><%= "ebin" %></td>
+    <td><%= @public_records[i].created_at.strftime("%d.%m.%Y %H:%M") %></td>
+    <td><a>more...</a></td>
+    </tr>
+    <%end%>
+  </table>
+  <p class="paginator">
+    Page <a>1</a> <a>2</a> <a>3</a>
+  </p>
+</div>

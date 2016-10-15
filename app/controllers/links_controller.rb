@@ -18,4 +18,20 @@ class LinksController < ApplicationController
       redirect_to requested_link.parent_link
   end
 
+  def public
+    @index = 0
+    @public_records = []
+    Link.find_each do |link|
+     @public_records[@index] = link
+      @index += 1
+    end
+  end
+
+  def public_search
+
+  end
+
+  def private
+  end
+
 end
