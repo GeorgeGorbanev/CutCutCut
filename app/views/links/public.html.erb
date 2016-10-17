@@ -19,23 +19,5 @@
       <%= submit_tag("Search", class: "btn", id: "public_search_submit") %>
   <% end %>
   <h1>Last links</h1>
-  <table>
-    <th width="auto">Parent link</th>
-    <th width="170px%">Child link</th>
-    <th width="70px">Clicks</th>
-    <th width="150px">Created</th>
-    <th width="40px"></th>
-    <% for i in 0..9%>
-    <tr class="<% if (i%2 != 0)%>even"><% else %>uneven"><% end%>
-    <td><%= @public_records[i].parent_link %></td>
-    <td><%= root_url + @public_records[i].new_link %></td>
-    <td><%= "ebin" %></td>
-    <td><%= @public_records[i].created_at.strftime("%d.%m.%Y %H:%M") %></td>
-    <td><a>more...</a></td>
-    </tr>
-    <%end%>
-  </table>
-  <p class="paginator">
-    Page <a>1</a> <a>2</a> <a>3</a>
-  </p>
+  <%= render 'layouts/links_table' %>
 </div>

@@ -4,6 +4,7 @@
 $ ->
   $('#new_link').on 'ajax:success', (e, data, status, xhr) ->
     $('#result_new_link').append data
+    $('#input_link').val('')
 
   $('#new_link').on 'ajax:error', (e, data, status, xhr) ->
     console.log e

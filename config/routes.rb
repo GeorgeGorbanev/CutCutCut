@@ -10,7 +10,11 @@ Rails.application.routes.draw do
 
   get 'contact' => "static_pages#contact"
 
+  get 'links' => "links#public"
+
   get 'links/public' => "links#public"
+
+  get 'links/public/page:page_number' => "links#public"
 
   get 'links/private' => "links#private"
 
