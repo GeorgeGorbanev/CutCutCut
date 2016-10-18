@@ -1,5 +1,6 @@
 <% if @links_table[0] != nil %>
- <% provide(:title, 'Public tools| Last links  — page ' + @page_number.to_s ) %>
+ <% params[:commit] == "Search"? provide(:title, 'Public tools | Search result — page ' + @page_number.to_s ) :
+                                 provide(:title, 'Public tools | Last links  — page ' + @page_number.to_s ) %>
  <% @pages_count = @links_table.count/10 %>
  <% @pages_count += 1 if @links_table.count%10 != 0 %>
  <table>
@@ -9,46 +10,18 @@
    <th width="150px">Created</th>
    <th width="40px"></th>
    <% for i in 0..9%>
-       <% if @links_table[i + @page_number*9] != nil %>
-       <tr class="<% if (i%2 != 0)%>even"><% else %>uneven"><% end%>
-       <td><%= @links_table[i + (@page_number-1)*9].parent_link %></td>
-       <td><%= root_url + @links_table[i + @page_number*9].new_link %></td>
-       <td><%= "N" %></td>
-       <td><%= @links_table[i + @page_number*9].created_at.strftime("%d.%m.%Y %H:%M") %></td>
-       <td><a>more...</a></td>
+       <% if @links_table[i + (@page_number-1)*9] != nil %>
+        <tr class="<% if (i%2 != 0)%>even"><% else %>uneven"><% end%>
+        <td><%= @links_table[i + (@page_number-1)*9].parent_link %></td>
+        <td><%= root_url + @links_table[i + (@page_number-1)*9].new_link %></td>
+        <td><%= @links_table[i + (@page_number-1)*9].click_count %></td>
+        <td><%= @links_table[i + (@page_number-1)*9].created_at.strftime("%d.%m.%Y %H:%M") %></td>
+        <td><a>more...</a></td>
        </tr>
        <% end %>
    <%end%>
  </table>
- <div class="pagenav">
-   <% if @page_number > 1 %>
-   <div class="prev" ><a href = "<%= root_url + "links/public/" + "page" + (@page_number - 1).to_s %>" >Previous </a></div>
-   <% end %>
-   <ul class="page-num">
-     <% if @page_number > 3 %>
-      <li>...</li>
-     <% end %>
-     <% if @page_number > 2 %>
-         <li><a href = "<%= root_url + "links/public/" + "page" + (@page_number - 2).to_s %>" ><%= @page_number - 2 %> </a></li>
-     <% end %>
-     <% if @page_number > 1 %>
-      <li><a href = "<%= root_url + "links/public/" + "page" + (@page_number - 1).to_s %>" ><%= @page_number - 1 %> </a></li>
-     <% end %>
-     <li id = "this_page_number"><%= @page_number%> </li>
-     <% if (@page_number + 1) <= @pages_count %>
-      <li><a href = "<%= root_url + "links/public/" + "page" + (@page_number + 1).to_s %>"><%= @page_number + 1 %> </a></li>
-     <% end %>
-     <% if (@page_number + 2) <= @pages_count %>
-      <li><a href = "<%= root_url + "links/public/" + "page" + (@page_number + 2).to_s %>"><%= @page_number + 2 %> </a></li>
-     <% end %>
-     <% if (@page_number + 3) <= @pages_count %>
-      <li>...</li>
-     <% end %>
-   </ul>
-   <% if @page_number != @pages_count %>
-   <div class="next"><a href = "<%= root_url + "links/public/" + "page" + (@page_number + 1).to_s %>">Next</a></div>
-   <% end %>
- </div>
+ <%= render  'layouts/paginate'%>
 <% else %>
  <p> There is no such links.</p>
 <% end %>

@@ -1,13 +1,18 @@
-<% provide(:title, 'Public tools') %>
+<% provide(:title, '') %>
+<% @this_page_path = root_url + "links" + "/public/" # for paginator %>
 <ul class="nav nav-tabs">
-  <li role="presentatuion" class="active"><a>Public</a></li>
-  <li role="presentation"><a href="/links/private">Private</a></li>
+  <li role="presentatuion" class="active">
+    <a>Public</a>
+  </li>
+  <li role="presentation">
+    <a href="/links/private">Private</a>
+  </li>
 </ul>
 <div class = "tools-area">
     <p>You can find here information about every public created link in data base.
     To make your link statistics private you need to
     <a href="<%= new_user_session_path %> "> sign in</a>.</p>
-  <%= form_tag("../links/public_search", id: "link", method: "get", remote: true) do %>
+  <%= form_tag(links_path + "/public/search", id: "link", method: "get") do %>
       <%= label_tag(:input_link, "Find by ") %>
       <span class = "radiobtn">
        <%= radio_button_tag :search_column, "parent", checked: true%> parent link
@@ -16,8 +21,12 @@
       <span class = "searchfield">
       <%= text_field_tag(:input_link, nil, class: 'searchfield') %>
       </span>
-      <%= submit_tag("Search", class: "btn", id: "public_search_submit") %>
+      <%= submit_tag("Search", class: "btn", id: "public_search_submit", method: "get") %>
   <% end %>
-  <h1>Last links</h1>
+  <% if params[:commit] == "Search" %>
+    <h1>There is <%= @links_table.count %> results</h1>
+  <% else %>
+    <h1>Last links</h1>
+  <% end %>
   <%= render 'layouts/links_table' %>
 </div>

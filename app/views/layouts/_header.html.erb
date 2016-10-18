@@ -17,9 +17,9 @@
           <div class = "nav-right-part">
            <ul class="nav navbar-nav">
              <% if user_signed_in? %>
-             <li><a href="../links/private">Tools</a></li>
+              <li><a href="<%= root_url + "links/private" %>">Tools</a></li>
              <% else %>
-             <li><a href="../links/public">Tools</a></li>
+              <li><a href="<%= root_url + "links/public" %>">Tools</a></li>
              <% end %>
              <% if user_signed_in? %>
                  <li class="dropdown">

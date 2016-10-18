@@ -14,17 +14,29 @@ class LinksController < ApplicationController
 
   def redirect_user_link
       requested_link = Link.find_by new_link: params[:path]
-      redirect_to requested_link.parent_link
+      if requested_link != nil
+        requested_link.click_count += 1
+        requested_link.save
+        redirect_to requested_link.parent_link
+      else
+        render plain: "404"
+      end
   end
 
   def public
-    params[:page_number] == nil ? @page_number = 1 : @page_number = params[:page_number].to_i
-    redirect_to public_path if @page_number < 1
-    @links_table = Link.where(:user_id => 1).reverse_order
-  end
-
-  def public_search
-
+    if params[:commit] == "Search"
+      if params[:search_column] == "parent"
+        @links_table = Link.where("parent_link LIKE ? AND user_id  LIKE ?", "%"+ params[:input_link] +"%", 1).reverse_order
+      elsif params[:search_column] == "child"
+        @links_table = Link.where("new_link LIKE ? AND user_id  LIKE ?", "%"+ params[:input_link] +"%", 1).reverse_order
+      end
+      params[:page_number] == nil ? @page_number = 1 : @page_number = params[:page_number].to_i
+      redirect_to root_url + "links/public" if @page_number < 1
+    else
+      @links_table = Link.where(:user_id => 1).reverse_order
+      params[:page_number] == nil ? @page_number = 1 : @page_number = params[:page_number].to_i
+      redirect_to root_url + "links/public" if @page_number < 1
+    end
   end
 
   def private

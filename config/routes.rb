@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   get 'links/public/page:page_number' => "links#public"
 
+  get 'links/public/search' => "links#public"
+
   get 'links/private' => "links#private"
 
   get 'users/sign_out' => "sessions#destroy"

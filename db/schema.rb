@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161006183751) do
+ActiveRecord::Schema.define(version: 20161018203336) do
 
   create_table "links", force: :cascade do |t|
     t.string   "parent_link",              null: false
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20161006183751) do
     t.integer  "user_id"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.integer  "click_count", default: 0
     t.index ["name"], name: "index_links_on_name"
     t.index ["new_link"], name: "index_links_on_new_link"
     t.index ["parent_link"], name: "index_links_on_parent_link"

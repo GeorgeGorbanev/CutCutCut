@@ -1,0 +1,59 @@
+<div class="pagenav">
+  <% if @page_number > 1 %>
+      <div class="prev" >
+        <a href = "<%= @this_page_path + "page" + (@page_number - 1).to_s %>" >
+          Previous
+        </a>
+      </div>
+  <% end %>
+  <ul class="page-num">
+    <% if @page_number > 3 %>
+        <li>
+          ...
+        </li>
+    <% end %>
+    <% if @page_number > 2 %>
+        <li>
+          <a href = "<%= @this_page_path + "page" + (@page_number - 2).to_s %>" >
+            <%= @page_number - 2 %>
+          </a>
+        </li>
+    <% end %>
+    <% if @page_number > 1 %>
+        <li>
+          <a href = "<%= @this_page_path + "page" + (@page_number - 1).to_s %>" >
+            <%= @page_number - 1 %>
+          </a>
+        </li>
+    <% end %>
+    <li id = "this_page_number">
+      <%= @page_number%>
+    </li>
+    <% if (@page_number + 1) <= @pages_count %>
+        <li>
+          <a href = "<%= @this_page_path + "page" + (@page_number + 1).to_s %>">
+            <%= @page_number + 1 %>
+          </a>
+        </li>
+    <% end %>
+    <% if (@page_number + 2) <= @pages_count %>
+        <li>
+          <a href = "<%= @this_page_path + "page" + (@page_number + 2).to_s %>">
+            <%= @page_number + 2 %>
+          </a>
+        </li>
+    <% end %>
+    <% if (@page_number + 3) <= @pages_count %>
+        <li>
+          ...
+        </li>
+    <% end %>
+  </ul>
+  <% if @page_number != @pages_count %>
+      <div class="next">
+        <a href = "<%= @this_page_path + "page" + (@page_number + 1).to_s %>">
+          Next
+        </a>
+      </div>
+  <% end %>
+</div>
