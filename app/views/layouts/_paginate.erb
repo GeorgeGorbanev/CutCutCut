@@ -1,7 +1,21 @@
+<%def page_param %>
+<%  if  params.has_key?(:commit)%>
+<%   return "&page=" %>
+<%  else %>
+<%   return "?page=" %>
+<%  end %>
+<%end %>
+<%def url_build %>
+<% result = @main_path %>
+<% result += "search?utf8=✓&search_column=" + params[:search_column] + "&input_link=" + params[:input_link] + "&commit=Search" if params.has_key?(:commit) %>
+<% return result  %>
+<%end %>
+
+
 <div class="pagenav">
   <% if @page_number > 1 %>
       <div class="prev" >
-        <a href = "<%= @this_page_path + "page" + (@page_number - 1).to_s %>" >
+        <a href = "<%= url_build + page_param + (@page_number - 1).to_s %>" >
           Previous
         </a>
       </div>
@@ -14,14 +28,14 @@
     <% end %>
     <% if @page_number > 2 %>
         <li>
-          <a href = "<%= @this_page_path + "page" + (@page_number - 2).to_s %>" >
+          <a href = "<%= url_build+ page_param +  (@page_number - 2).to_s %>" >
             <%= @page_number - 2 %>
           </a>
         </li>
     <% end %>
     <% if @page_number > 1 %>
         <li>
-          <a href = "<%= @this_page_path + "page" + (@page_number - 1).to_s %>" >
+          <a href = "<%= url_build+ page_param +  (@page_number - 1).to_s %>" >
             <%= @page_number - 1 %>
           </a>
         </li>
@@ -31,14 +45,14 @@
     </li>
     <% if (@page_number + 1) <= @pages_count %>
         <li>
-          <a href = "<%= @this_page_path + "page" + (@page_number + 1).to_s %>">
+          <a href = "<%= url_build + page_param +  (@page_number + 1).to_s %>">
             <%= @page_number + 1 %>
           </a>
         </li>
     <% end %>
     <% if (@page_number + 2) <= @pages_count %>
         <li>
-          <a href = "<%= @this_page_path + "page" + (@page_number + 2).to_s %>">
+          <a href = "<%= url_build + page_param +  (@page_number + 2).to_s %>">
             <%= @page_number + 2 %>
           </a>
         </li>
@@ -51,7 +65,7 @@
   </ul>
   <% if @page_number != @pages_count %>
       <div class="next">
-        <a href = "<%= @this_page_path + "page" + (@page_number + 1).to_s %>">
+        <a href = "<%= url_build + page_param +  + (@page_number + 1).to_s %>">
           Next
         </a>
       </div>

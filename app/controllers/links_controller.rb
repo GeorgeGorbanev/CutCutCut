@@ -24,17 +24,18 @@ class LinksController < ApplicationController
   end
 
   def public
+    @main_path = root_url + "links/public/"
     if params[:commit] == "Search"
       if params[:search_column] == "parent"
         @links_table = Link.where("parent_link LIKE ? AND user_id  LIKE ?", "%"+ params[:input_link] +"%", 1).reverse_order
       elsif params[:search_column] == "child"
         @links_table = Link.where("new_link LIKE ? AND user_id  LIKE ?", "%"+ params[:input_link] +"%", 1).reverse_order
       end
-      params[:page_number] == nil ? @page_number = 1 : @page_number = params[:page_number].to_i
+      params[:page] == nil ? @page_number = 1 : @page_number = params[:page].to_i
       redirect_to root_url + "links/public" if @page_number < 1
     else
       @links_table = Link.where(:user_id => 1).reverse_order
-      params[:page_number] == nil ? @page_number = 1 : @page_number = params[:page_number].to_i
+      params[:page] == nil ? @page_number = 1 : @page_number = params[:page].to_i
       redirect_to root_url + "links/public" if @page_number < 1
     end
   end

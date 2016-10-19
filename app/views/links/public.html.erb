@@ -1,5 +1,4 @@
 <% provide(:title, '') %>
-<% @this_page_path = root_url + "links" + "/public/" # for paginator %>
 <ul class="nav nav-tabs">
   <li role="presentatuion" class="active">
     <a>Public</a>
@@ -16,10 +15,18 @@
       <%= label_tag(:input_link, "Find by ") %>
       <span class = "radiobtn">
        <%= radio_button_tag :search_column, "parent", checked: true%> parent link
-        <%= radio_button_tag :search_column, "child" %> child link
+       <% if params[:search_column] == "child" %>
+             <%= radio_button_tag :search_column, "child", checked: true %> child link
+       <% else %>
+             <%= radio_button_tag :search_column, "child" %> child link
+       <% end %>
       </span>
       <span class = "searchfield">
-      <%= text_field_tag(:input_link, nil, class: 'searchfield') %>
+        <% if params[:input_link] != '' %>
+          <%= text_field_tag(:input_link, nil, class: 'searchfield', value: params[:input_link]) %>
+        <% else %>
+           <%= text_field_tag(:input_link, nil, class: 'searchfield') %>
+        <% end %>
       </span>
       <%= submit_tag("Search", class: "btn", id: "public_search_submit", method: "get") %>
   <% end %>
