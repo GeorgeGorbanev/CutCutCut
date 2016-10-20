@@ -27,48 +27,72 @@
   .radiobtn{
     font-size: 12pt;
   }
-  table{
-    border-color: #DDDDDD;
-    width: 95%;
-    margin-right: 2.5%;
-    margin-left: 2.5%;
-    margin-top: 20px;
-    th{
-      text-align: left;
-      padding-left: 10px;
-    }
-    tr{
-      height: 30px;
-    }
-    td{
-      padding-left: 10px;
-      text-align: left;
-      border-left: 2px;
+}
+
+table{
+  border-color: #DDDDDD;
+  width: 95%;
+  margin-right: 2.5%;
+  margin-left: 2.5%;
+  margin-top: 20px;
+  th{
+    text-align: left;
+    padding-left: 10px;
+  }
+  tr{
+    height: 30px;
+  }
+  td{
+    padding-left: 10px;
+    text-align: left;
+    border-left: 2px;
+  }
+}
+.pagenav {
+  margin-top: 15px;
+  font-size: 13pt;
+  .prev {
+    float: left;
+  }
+  .next {
+    float: right;
+  }
+  .page-num {
+    margin-left: 45%;
+    margin-right: 45%;
+    display: inline;
+    list-style-type: none;
+    li {
+      display: inline;
     }
   }
-  .pagenav {
-    margin-top: 15px;
-    font-size: 13pt;
-    .prev {
-    float: left;
+}
+.even{
+  background: #DDDDDD;
+}
+.uneven{
+  background:  #EEEEEE;
+}
+
+.link-info{
+  padding-left: 10%;
+  text-align: left;
+  .chart-columns {
+    margin-bottom: 220px;
+    .half-wide-left {
+      width: 45%;
+      float: left;
     }
-    .next {
+    .half-wide-right {
+      width: 45%;
       float: right;
     }
-    .page-num {
-      text-align: center;
-      display: inline;
-      list-style-type: none;
+  }
+  h1{
+    font-size: 22pt;
+  }
+  h2{
+     font-size: 18pt;
+   }
 
-      li {
-        display: inline;
-      }
-    }
-  }
-  .even{
-    background: #DDDDDD;
-  }
-  .uneven{
-    background:  #EEEEEE;
-  }
 }

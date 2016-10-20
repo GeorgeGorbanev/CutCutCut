@@ -13,10 +13,10 @@
        <% if @links_table[i + (@page_number-1)*9] != nil %>
         <tr class="<% if (i%2 != 0)%>even"><% else %>uneven"><% end%>
         <td><%= @links_table[i + (@page_number-1)*9].parent_link %></td>
-        <td><%= root_url + @links_table[i + (@page_number-1)*9].new_link %></td>
+        <td><%= root_url + @links_table[i + (@page_number-1)*9].id %></td>
         <td><%= @links_table[i + (@page_number-1)*9].click_count %></td>
         <td><%= @links_table[i + (@page_number-1)*9].created_at.strftime("%d.%m.%Y %H:%M") %></td>
-        <td><a>more...</a></td>
+        <td><a href="<%= root_url + "links/" + @links_table[i + (@page_number-1)*9].id %>">more...</a></td>
        </tr>
        <% end %>
    <%end%>

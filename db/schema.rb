@@ -12,26 +12,28 @@
 
 ActiveRecord::Schema.define(version: 20161018203336) do
 
-  create_table "links", force: :cascade do |t|
+  create_table "links", id: false, force: :cascade do |t|
+    t.string   "id",                       null: false
     t.string   "parent_link",              null: false
-    t.string   "new_link",                 null: false
     t.string   "name",        default: ""
     t.integer  "user_id"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "click_count", default: 0
+    t.index ["id"], name: "index_links_on_id"
     t.index ["name"], name: "index_links_on_name"
-    t.index ["new_link"], name: "index_links_on_new_link"
     t.index ["parent_link"], name: "index_links_on_parent_link"
     t.index ["user_id"], name: "index_links_on_user_id"
   end
 
   create_table "transitions", force: :cascade do |t|
-    t.string   "ip",         default: "", null: false
+    t.string   "link_id"
+    t.string   "ip"
     t.string   "browser"
-    t.integer  "link_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "device"
+    t.string   "platform"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["link_id"], name: "index_transitions_on_link_id"
   end
 

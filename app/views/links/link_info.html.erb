@@ -1,0 +1,43 @@
+<% provide :title, 'Link statistics' %>
+<div class="link-info">
+  <% if @table_transactions.count == 0 %>
+      <h2>There is no clicks yet</h2>
+  <% else %>
+   <h1>Summary</h1>
+   <h2><%= @table_transactions.count %> clicks</h2>
+   <%= line_chart @table_transactions.group(:created_at).count, width: "100%", height: "100%"%>
+   <div class="chart-columns">
+    <div class = "half-wide-left">
+      <h2>Platform</h2>
+      <%= pie_chart @table_transactions.group(:platform).count, width: "100%", height: "100%"%>
+    </div>
+   <div class = "half-wide-right">
+      <h2>Browser</h2>
+      <%= bar_chart @table_transactions.group(:browser).count, width: "100%", height: "100%"%>
+   </div>
+  </div>
+  <h1>Details</h1>
+      <% @pages_count = @table_transactions.count/10 %>
+      <% @pages_count += 1 if @table_transactions.count%10 != 0 %>
+      <table>
+        <th width="5%">№</th>
+        <th width="20%">Date and time</th>
+        <th width="10%">IP</th>
+        <th width="20%">Platform</th>
+        <th width="45%">Browser</th>
+        <% for i in 0..14%>
+            <% if @table_transactions[i + (@page_number-1)*9] != nil %>
+                <tr class="<% if (i%2 != 0)%>even"><% else %>uneven"><% end%>
+                <td><%= @table_transactions[i + (@page_number-1)*9].id %></td>
+                <td><%= @table_transactions[i + (@page_number-1)*9].created_at.strftime("%d.%m.%Y %H:%M") %></td>
+                <td><%=  @table_transactions[i + (@page_number-1)*9].ip %></td>
+                <td><%= @table_transactions[i + (@page_number-1)*9].platform %></td>
+                <td><%= @table_transactions[i + (@page_number-1)*9].browser %> </td>
+                </tr>
+            <% end %>
+        <%end%>
+      </table>
+      <%= render  'layouts/paginate'%>
+ <% end %>
+</div>
+

@@ -14,9 +14,7 @@ Rails.application.routes.draw do
 
   get 'links/public' => "links#public"
 
-  get 'links/public/page:page_number' => "links#public"
-
-  get 'links/public/search' => "links#public"
+  get 'links/public/search' => "links#public" # костыль: поиск должен обрабатываться предыдущем контроллером
 
   get 'links/private' => "links#private"
 
@@ -25,6 +23,8 @@ Rails.application.routes.draw do
   get 'links/generate_anon' => "links#generate_anon"
 
   get 'links/public_search' => "links#public_search"
+
+  get 'links/:link_id' => "links#link_info"
 
   get '*path' => "links#redirect_user_link"
 

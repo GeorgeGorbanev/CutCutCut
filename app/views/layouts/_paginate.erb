@@ -1,15 +1,15 @@
-<%def page_param %>
-<%  if  params.has_key?(:commit)%>
+<% def page_param %>
+<%  if  params.has_key? :commit %>
 <%   return "&page=" %>
 <%  else %>
 <%   return "?page=" %>
 <%  end %>
-<%end %>
-<%def url_build %>
-<% result = @main_path %>
-<% result += "search?utf8=✓&search_column=" + params[:search_column] + "&input_link=" + params[:input_link] + "&commit=Search" if params.has_key?(:commit) %>
-<% return result  %>
-<%end %>
+<% end %>
+<% def url_build %>
+<%  result = @main_path %>
+<%  result += "search?utf8=✓&search_column=" + params[:search_column] + "&input_link=" + params[:input_link] + "&commit=Search" if params.has_key?(:commit) %>
+<%  return result  %>
+<% end %>
 
 
 <div class="pagenav">

@@ -1,11 +1,12 @@
 class CreateTransitions < ActiveRecord::Migration[5.0]
   def change
     create_table :transitions do |t|
-      t.string :ip,              null: false, default: ""
+      t.belongs_to :link, index: true, :foreign_key => :id
+      t.string :link_id
+      t.string :ip
       t.string :browser
-
-      t.references :link
-
+      t.string :device
+      t.string :platform
       t.timestamps
     end
   end

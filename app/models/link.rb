@@ -1,10 +1,11 @@
 class Link < ApplicationRecord
 
+  self.primary_key = :id
   belongs_to :user
   has_many :transitions
 
   def self.unique?(generated_link)
-    if !Link.find_by(new_link: generated_link)
+    if !Link.find_by(id: generated_link)
       return true
     else
       return false
