@@ -1,4 +1,4 @@
-<% if @links_table[0] != nil %>
+<% if @links_table != nil %>
  <% params[:commit] == "Search"? provide(:title, 'Public tools | Search result — page ' + @page_number.to_s ) :
                                  provide(:title, 'Public tools | Last links  — page ' + @page_number.to_s ) %>
  <% @pages_count = @links_table.count/10 %>
@@ -16,12 +16,12 @@
         <td><%= root_url + @links_table[i + (@page_number-1)*9].id %></td>
         <td><%= @links_table[i + (@page_number-1)*9].click_count %></td>
         <td><%= @links_table[i + (@page_number-1)*9].created_at.strftime("%d.%m.%Y %H:%M") %></td>
-        <td><a href="<%= root_url + "links/" + @links_table[i + (@page_number-1)*9].id %>">more...</a></td>
+        <td><a href="<%= links_path + "/" + @links_table[i + (@page_number-1)*9].id %>">more...</a></td>
        </tr>
        <% end %>
    <%end%>
  </table>
  <%= render  'layouts/paginate'%>
 <% else %>
- <p> There is no such links.</p>
+ <p> Such links is not exist.</p>
 <% end %>

@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 20161018203336) do
     t.string   "link_id"
     t.string   "ip"
     t.string   "browser"
-    t.string   "device"
     t.string   "platform"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

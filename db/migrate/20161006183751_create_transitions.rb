@@ -5,7 +5,6 @@ class CreateTransitions < ActiveRecord::Migration[5.0]
       t.string :link_id
       t.string :ip
       t.string :browser
-      t.string :device
       t.string :platform
       t.timestamps
     end

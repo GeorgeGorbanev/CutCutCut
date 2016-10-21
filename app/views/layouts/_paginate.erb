@@ -1,73 +1,43 @@
-<% def page_param %>
-<%  if  params.has_key? :commit %>
-<%   return "&page=" %>
-<%  else %>
-<%   return "?page=" %>
-<%  end %>
-<% end %>
-<% def url_build %>
-<%  result = @main_path %>
-<%  result += "search?utf8=✓&search_column=" + params[:search_column] + "&input_link=" + params[:input_link] + "&commit=Search" if params.has_key?(:commit) %>
-<%  return result  %>
-<% end %>
-
-
+<% params[:page] = 1 if params[:page] == nil || params[:page].to_i < 1%>
+<% params[:page] = params[:page].to_i %>
 <div class="pagenav">
-  <% if @page_number > 1 %>
-      <div class="prev" >
-        <a href = "<%= url_build + page_param + (@page_number - 1).to_s %>" >
-          Previous
-        </a>
-      </div>
+  <% if params[:page] > 1 %>
+    <div class="prev" >
+    <%= link_to 'Previous', request.parameters.merge({:page => params[:page] - 1}) %>
+    </div>
   <% end %>
   <ul class="page-num">
-    <% if @page_number > 3 %>
+    <% if params[:page] > 3 %>
+        <li>...</li>
+    <% end %>
+    <% if params[:page] > 2 %>
         <li>
-          ...
+          <%= link_to (params[:page]-2).to_s, request.parameters.merge({:page => params[:page] - 2}) %>
         </li>
     <% end %>
-    <% if @page_number > 2 %>
+    <% if params[:page] > 1 %>
         <li>
-          <a href = "<%= url_build+ page_param +  (@page_number - 2).to_s %>" >
-            <%= @page_number - 2 %>
-          </a>
+          <%= link_to (params[:page]-1).to_s, request.parameters.merge({:page => params[:page] - 1}) %>
         </li>
     <% end %>
-    <% if @page_number > 1 %>
+    <li id = "this_page_number"> <%= params[:page] %> </li>
+    <% if (params[:page] + 1) <= @pages_count %>
         <li>
-          <a href = "<%= url_build+ page_param +  (@page_number - 1).to_s %>" >
-            <%= @page_number - 1 %>
-          </a>
+          <%= link_to (params[:page]+1).to_s, request.parameters.merge({:page => params[:page] + 1}) %>
         </li>
     <% end %>
-    <li id = "this_page_number">
-      <%= @page_number%>
-    </li>
-    <% if (@page_number + 1) <= @pages_count %>
+    <% if (params[:page] + 2) <= @pages_count %>
         <li>
-          <a href = "<%= url_build + page_param +  (@page_number + 1).to_s %>">
-            <%= @page_number + 1 %>
-          </a>
+          <%= link_to (params[:page]+2).to_s, request.parameters.merge({:page => params[:page] + 2}) %>
         </li>
     <% end %>
-    <% if (@page_number + 2) <= @pages_count %>
-        <li>
-          <a href = "<%= url_build + page_param +  (@page_number + 2).to_s %>">
-            <%= @page_number + 2 %>
-          </a>
-        </li>
-    <% end %>
-    <% if (@page_number + 3) <= @pages_count %>
-        <li>
-          ...
-        </li>
+    <% if (params[:page] + 3) <= @pages_count %>
+        <li>...</li>
     <% end %>
   </ul>
-  <% if @page_number != @pages_count %>
-      <div class="next">
-        <a href = "<%= url_build + page_param +  + (@page_number + 1).to_s %>">
-          Next
-        </a>
-      </div>
+  <% if params[:page] < @pages_count %>
+    <div class="next">
+      <%= link_to 'Next',  request.parameters.merge({:page => params[:page] + 1}) %>
+    </div>
   <% end %>
 </div>

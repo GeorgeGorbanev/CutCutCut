@@ -6,21 +6,18 @@
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
             <span class="sr-only">Toggle navigation</span>
           </button>
-          <a class="logo" href="<%=root_url%>"><%= image_tag("Logo.png", size: "40x40") %> </a>
-          <a class="navbar-brand" href="<%=root_url%>">Cut! Cut! Cut!</a>
+          <a class="logo" href="<%=root_path%>"><%= image_tag("Logo.png", size: "40x40") %> </a>
+          <a class="navbar-brand" href="<%=root_path%>">Cut! Cut! Cut!</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li> <%= link_to "Home", home_path %></li>
+            <li> <%= link_to "Home", root_path %></li>
             <li><%= link_to "About", about_path %></li>
           </ul>
           <div class = "nav-right-part">
            <ul class="nav navbar-nav">
-             <% if user_signed_in? %>
-              <li><a href="<%= root_url + "links/private" %>">Tools</a></li>
-             <% else %>
-              <li><a href="<%= root_url + "links/public" %>">Tools</a></li>
-             <% end %>
+              <% user_signed_in? ? type = "private" : type = "public"%>
+              <li><%=link_to 'Tools', links_path(:type => type) %></li>
              <% if user_signed_in? %>
                  <li class="dropdown">
                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account<b class="caret"></b></a>

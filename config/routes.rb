@@ -4,19 +4,15 @@ Rails.application.routes.draw do
 
   root to: 'static_pages#home'
 
-  get 'home' => "static_pages#home"
-
   get 'about' => "static_pages#about"
 
   get 'contact' => "static_pages#contact"
 
-  get 'links' => "links#public"
+  get 'links' => "links#index"
 
-  get 'links/public' => "links#public"
+  get 'links/new' => "links#new"
 
-  get 'links/public/search' => "links#public" # костыль: поиск должен обрабатываться предыдущем контроллером
-
-  get 'links/private' => "links#private"
+  get 'links/search' => "links#index"
 
   get 'users/sign_out' => "sessions#destroy"
 

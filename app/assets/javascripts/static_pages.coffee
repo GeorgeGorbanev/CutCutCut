@@ -3,8 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
   $('#new_link').on 'ajax:success', (e, data, status, xhr) ->
-    $('#result_new_link').append data
     $('#input_link').val('')
+    $('#result_new_link').append(data)
 
   $('#new_link').on 'ajax:error', (e, data, status, xhr) ->
     console.log e
