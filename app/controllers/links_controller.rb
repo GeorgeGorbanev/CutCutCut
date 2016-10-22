@@ -1,11 +1,11 @@
 class LinksController < ApplicationController
 
-  DEFAULT_TABLE_SIZE = 10 # позже добавить возможность менять
-
   def new
-    if params[:type] = "random_public"
+    if params[:type] == "random_public"
       new_link = Link.generate params[:input_link]
       render plain: params[:input_link] + " => " + root_url + new_link + "<br/>"
+    elsif params[:type] == "custom"
+      Link.custom_create params[:user].to_i, params[:child_link], params[:parent_link]
     end
   end
 
@@ -23,6 +23,8 @@ class LinksController < ApplicationController
   end
 
   def index
+    params[:user_id] = current_user.id if current_user != nil
+    redirect_to new_user_session_path if params[:type] == "private" && !user_signed_in?
     params[:commit] == "Search" ?  @links_table = Link.search_table(params) :
                                    @links_table = Link.last_table(params)
   end
@@ -31,7 +33,7 @@ class LinksController < ApplicationController
       @main_path = root_url + "links/" + params[:link_id]
       @table_transactions = Transition.where(:link_id => params[:link_id]).reverse_order
       params[:page] == nil ? @page_number = 1 : @page_number = params[:page].to_i
-      redirect_to root_url + "links/public" if @page_number < 1
+      redirect_to root_url + "links/" if @page_number < 1
   end
 
 end

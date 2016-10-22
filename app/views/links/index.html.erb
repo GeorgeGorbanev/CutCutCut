@@ -1,41 +1,13 @@
 <% params[:page] == nil ? @page_number = 1 : @page_number = params[:page].to_i %>
-<ul class="nav nav-tabs">
-  <%if params[:type] == "public" %>
-      <li role="presentatuion" class="active"> <a>Public</a> </li>
-      <li role="presentation"> <%= link_to 'Private', links_path(:type => "private") %> </li>
-  <% elsif params[:type] == "private" %>
-      <li role="presentation" ><%= link_to 'Public', links_path(:type => "public") %></li>
-      <li role="presentation" class="active"><a>Private</a></li>
-  <% end %>
-</ul>
 <div class = "tools-area">
-    <p>You can find here information about every public created link in data base.
-    To make your link statistics private you need to
-    <a href="<%= new_user_session_path %> "> sign in</a>.</p>
-    <%= form_tag(links_path, id: "link", method: "get") do %>
-      <%= hidden_field_tag :type, params[:type] %>
-      <%= label_tag(:input_link, "Find by ") %>
-      <span class = "radiobtn">
-       <%= radio_button_tag :search_column, "parent", checked: true%> parent link
-       <% if params[:search_column] == "child" %>
-             <%= radio_button_tag :search_column, "child", checked: true %> child link
-       <% else %>
-             <%= radio_button_tag :search_column, "child" %> child link
-       <% end %>
-      </span>
-      <span class = "searchfield">
-        <% if params[:input_link] != '' %>
-          <%= text_field_tag(:input_link, nil, class: 'searchfield', value: params[:input_link]) %>
-        <% else %>
-           <%= text_field_tag(:input_link, nil, class: 'searchfield') %>
-        <% end %>
-      </span>
-      <%= submit_tag("Search", class: "btn", id: "public_search_submit", method: "get") %>
-  <% end %>
+  <%= render 'layouts/tools_tab_control' %>
+  <h1>Create custom <%= params[:type] == "private" ? "private" : "public" %> link</h1>
+  <%= render 'layouts/create_custom_link_form' %>
   <% if params[:commit] == "Search" %>
     <h1>There is <%= @links_table.count%> results</h1>
   <% else %>
     <h1>Last links</h1>
   <% end %>
+  <%= render 'layouts/search_form' %>
   <%= render 'layouts/links_table' %>
 </div>

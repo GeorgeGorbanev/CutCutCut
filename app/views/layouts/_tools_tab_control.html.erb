@@ -1,0 +1,9 @@
+<ul class="nav nav-tabs">
+  <%if params[:type] == "public" %>
+      <li role="presentatuion" class="active"> <a>Public</a> </li>
+      <li role="presentation"> <%= link_to 'Private', links_path(:type => "private") %> </li>
+  <% elsif params[:type] == "private" %>
+      <li role="presentation" ><%= link_to 'Public', links_path(:type => "public") %></li>
+      <li role="presentation" class="active"><a>Private</a></li>
+  <% end %>
+</ul>
