@@ -6,8 +6,12 @@ class Link < ApplicationRecord
   belongs_to :user
   has_many :transitions
 
-  def self.custom_create user_id, child, parent
+  def self.custom_create user_id, child, parent, random
+    if random == "on"
+      return generate parent, user_id
+    else
     Link.create :id => child, :parent_link => parent, :user_id => user_id if Link.find_by(:id => child) == nil
+    end
   end
 
   def self.generate parent_link, user_id = 1, length = COMMON_LENGTH
@@ -32,7 +36,7 @@ class Link < ApplicationRecord
 
   def self.last_table params
     if params[:type] == "private"
-      links_table = Link.where(:user_id => params[:user_id]).reverse_order
+      links_table = Link.where(:user_id => params[:user_id]).order("created_at DESC")
     elsif params[:type] == "public"
       links_table = Link.where(:user_id => 1).order("created_at DESC")
     end

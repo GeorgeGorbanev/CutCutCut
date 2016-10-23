@@ -1,7 +1,8 @@
 <div class = "jumbotron custom_link">
   <%= form_tag(links_path + '/new?', id: "new_link", method: "get", remote: true) do %>
     <%= hidden_field_tag :type, "custom" %>
-    <%= current_user ? hidden_field_tag(:user, current_user.id) : hidden_field_tag(:user, 1) %>
+    <%= params[:type] == "private" ? hidden_field_tag(:user, current_user.id) :
+                                     hidden_field_tag(:user, 1) %>
     <%= label_tag(:parent_link, "Parent link: ", class: "textfieldf") %>
       <div class="textfieldf">
         <div class="input-group">
@@ -11,9 +12,9 @@
     <%= label_tag(:child_link, "Child link: ", class: "textfieldf") %>
       <div class="textfieldf">
         <div class="input-group">
-          <input type="text" class="form-control" name="child_link" id="child_link">
+          <input type="text" class="form-control" id = "child_link" name="child_link" id="child_link">
            <span class="input-group-addon">
-             <input type="checkbox" value = "generate">
+             <input type="checkbox" name = "generate" id = "checkbox-generate">
              <p class="checkboxlabel">random generate</p>
            </span>
         </div>
