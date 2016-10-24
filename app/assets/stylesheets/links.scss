@@ -35,10 +35,13 @@
   .signhint{
      font-size: 12pt;
   }
+  .tdcenter{
+    text-align: center;
+  }
 }
 
 .custom_link{
-  height: 205px;
+  height: auto;
   input{
   }
   .input-group{
@@ -67,9 +70,6 @@ table{
   margin-right: 2.5%;
   margin-left: 2.5%;
   margin-top: 20px;
-  #clickcount{
-    text-align: center;
-  }
   th{
     text-align: left;
     padding-left: 10px;
@@ -83,6 +83,8 @@ table{
     border-left: 2px;
   }
 }
+
+
 .pagenav {
   margin-top: 15px;
   font-size: 13pt;

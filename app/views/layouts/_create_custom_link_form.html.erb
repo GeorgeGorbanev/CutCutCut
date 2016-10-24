@@ -1,24 +1,26 @@
+<div id = "mssg"></div>
 <div class = "jumbotron custom_link">
-  <%= form_tag(links_path + '/new?', id: "new_link", method: "get", remote: true) do %>
+  <%= form_tag(links_path + '/new?', id: "new_custom_link", method: "get", remote: true) do %>
     <%= hidden_field_tag :type, "custom" %>
     <%= params[:type] == "private" ? hidden_field_tag(:user, current_user.id) :
                                      hidden_field_tag(:user, 1) %>
     <%= label_tag(:parent_link, "Parent link: ", class: "textfieldf") %>
       <div class="textfieldf">
         <div class="input-group">
-          <input type="text" class="form-control" name="parent_link" id="parent_link">
+          <input type="text" class="form-control" name="parent_link" id="parent_link" placeholder="Link you want to cut">
         </div>
       </div>
     <%= label_tag(:child_link, "Child link: ", class: "textfieldf") %>
       <div class="textfieldf">
         <div class="input-group">
-          <input type="text" class="form-control" id = "child_link" name="child_link" id="child_link">
+          <input type="text" class="form-control" id = "child_link" name="child_link" placeholder="Use letters, digits and underscore" >
            <span class="input-group-addon">
              <input type="checkbox" name = "generate" id = "checkbox-generate">
              <p class="checkboxlabel">random generate</p>
            </span>
         </div>
       </div>
-    <%= submit_tag("Cut", class: "btn", id: "anon_cut_submit") %>
+    <%= submit_tag("Cut", class: "btn", id: "custom_cut_submit") %>
+
 <% end %>
 </div>

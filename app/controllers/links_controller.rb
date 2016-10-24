@@ -3,9 +3,19 @@ class LinksController < ApplicationController
   def new
     if params[:type] == "random_public"
       new_link = Link.generate params[:input_link]
-      render plain: params[:input_link] + " => " + root_url + new_link + "<br/>"
+      if new_link == nil
+        render plain: "Error: wrong link format"
+        return nil
+      end
+      render plain: "Success! Your link: " + params[:input_link] + " was cutted to " + root_url + new_link + "<br/>"
     elsif params[:type] == "custom"
-      Link.custom_create params[:user].to_i, params[:child_link], params[:parent_link], params[:generate]
+      result = Link.custom_create params[:user].to_i, params[:child_link], params[:parent_link], params[:generate]
+      if !result
+        render plain: "Error: wrong child format"
+        return nil
+      end
+      render plain: "Error! Your link: " + root_url + params[:child_link] + " already exsist" if result == nil
+      render plain: "<span id = mssg> Success! Your new link: " + root_url + result 
     end
   end
 
@@ -26,6 +36,7 @@ class LinksController < ApplicationController
   end
 
   def index
+    params[:type] = "public" if params[:type] == nil
     params[:user_id] = current_user.id if current_user != nil
     redirect_to new_user_session_path if params[:type] == "private" && !user_signed_in?
     params[:commit] == "Search" ?  @links_table = Link.search_table(params) :

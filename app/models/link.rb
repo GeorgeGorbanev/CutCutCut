@@ -7,14 +7,22 @@ class Link < ApplicationRecord
   has_many :transitions
 
   def self.custom_create user_id, child, parent, random
+    return nil if !Link.url_validation parent
+    return nil if Link.child_validation child == false && random == "off"
     if random == "on"
       return generate parent, user_id
     else
-    Link.create :id => child, :parent_link => parent, :user_id => user_id if Link.find_by(:id => child) == nil
+      if Link.find_by(:id => child) == nil
+        Link.create :id => child, :parent_link => parent, :user_id => user_id
+        return child
+      else
+        return nil
+      end
     end
   end
 
   def self.generate parent_link, user_id = 1, length = COMMON_LENGTH
+    return nil if !Link.url_validation parent_link
     generated_link = ""
     loop do
       generated_link = Link.generate_string length
@@ -25,7 +33,7 @@ class Link < ApplicationRecord
   end
 
   def self.generate_string length
-    valid_symbols = "abcdefghikjklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    valid_symbols = "abcdefghikjklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_"
     result_string = ""
     length.times do
       next_symbol = valid_symbols[rand(62)]
@@ -50,6 +58,23 @@ class Link < ApplicationRecord
                                         search_query = "parent_link" + search_query
     links_table = Link.where(search_query, "%" + params[:input_link] +"%", user_id).order("created_at DESC")
     return links_table
+  end
+
+  def self.url_validation string
+    require 'uri'
+    if string =~ URI::regexp
+      return true
+    else
+      return false
+    end
+  end
+
+  def self.child_validation string
+    if string =~ /^[a-zA-Z0-9-_]+$/
+      return true
+    else
+      return false
+    end
   end
 
 end

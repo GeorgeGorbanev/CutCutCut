@@ -16,5 +16,8 @@
            <%= text_field_tag(:input_link, nil, class: 'searchfield') %>
         <% end %>
       </span>
-    <%= submit_tag("Search", class: "btn", id: "public_search_submit", method: "get") %>
+    <button class = "btn" value = "Search" id = "public_search_submit" type = "submit" method = "get" name = "commit" data-disable-with="Search">
+      <span class="glyphicon glyphicon glyphicon-search" aria-hidden="true"></span> Search
+    </button>
+    <% submit_tag("Search", class: "btn", id: "public_search_submit", method: "get") %>
 <% end %>

@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
 .linkbox {
   background-color: #EEEEEE;
   border-radius: 10px;
@@ -9,7 +10,7 @@
   height: 50px;
   width: 80%;
   margin: 0 auto;
-  margin-top: 25%;
+  margin-top: 23%;
   margin-bottom: 25%;
   form{
     width: 100%;
@@ -29,13 +30,43 @@
     height: 33px;
   }
 }
+p{
+  margin: 0 auto;
+
+  margin-bottom: 10px;
+}
+
+#result_new_link{
+  display: block;
+}
 
 .jumbotron{
   border-radius: 20px;
   padding: 40px;
   padding-top: 10px;
   text-align: left;
-  h1{
-    font-size: 25px;
+  .refer{
+    margin-top: 25px;
+    float: left;
+    font-size: 16pt;
   }
+  p{
+    font-size: 15pt;
+    margin: auto;
+  }
+  h1{
+    font-size: 22pt;
+  }
+  img{
+    float: left;
+    width: 70px;
+    height: 70px;
+    margin-right: 20px;
+  }
+}
+.contact{
+  position: relative;
+  margin-top: 15px;
+  padding: 10px;
+  height: 80px;
 }
