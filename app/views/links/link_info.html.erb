@@ -4,8 +4,16 @@
       <h2>There is no clicks yet</h2>
   <% else %>
    <h1>Summary</h1>
+     <div class = "jumbotron">
+        <ul>
+          <li>Link: <a>     <%= root_url + @link_record[:id] %></li></a>
+          <li>Parent: <a>   <%= @link_record[:parent_link] %></li></a>
+          <li>Type: <%= @link_record[:user_id] == 1 ? "public" : "private" %></li>
+          <li>Created: <%= @link_record[:created_at] %></li>
+        </ul>
+     </div>
    <h2><%= @table_transactions.count %> clicks</h2>
-   <%= line_chart @table_transactions.group(:created_at).count, width: "100%", height: "100%"%>
+   <%= area_chart @table_transactions.group(:created_at).sum(:id), width: "100%", height: "100%"%>
    <div class="chart-columns">
     <div class = "half-wide-left">
       <h2>Platform</h2>

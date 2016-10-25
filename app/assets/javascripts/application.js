@@ -16,5 +16,6 @@
 //= require_tree .
 //= require Chart.bundle
 //= require highcharts
+//= require clipboard.min
 //= require chartkick
 

@@ -1,4 +1,5 @@
 <% provide(:title, '') %>
+<script>new Clipboard('.btn-clipboard'); </script>
 <div class="linkbox">
  <%= form_tag(links_path + '/new?type=random_public', id: "new_link", method: "get", remote: true) do %>
    <%= label_tag(:input_link, "Link: ") %>

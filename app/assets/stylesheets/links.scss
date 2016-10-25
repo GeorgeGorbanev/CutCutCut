@@ -70,6 +70,7 @@ table{
   margin-right: 2.5%;
   margin-left: 2.5%;
   margin-top: 20px;
+  table-layout: fixed;
   th{
     text-align: left;
     padding-left: 10px;
@@ -78,9 +79,15 @@ table{
     height: 30px;
   }
   td{
+    overflow: hidden;
+    white-space: nowrap;
     padding-left: 10px;
     text-align: left;
     border-left: 2px;
+  }
+  .btn-clipboard{
+    border: none;
+    background-color: transparent;
   }
 }
 
@@ -113,6 +120,17 @@ table{
 .link-info{
   padding-left: 10%;
   text-align: left;
+  .jumbotron{
+      ul{
+        color: #2E2F30;
+        font: 14pt Helvetica;
+        list-style-type: none;
+        line-height: 30px;
+        margin-left: 0;
+        padding-left: 0;
+      }
+    height: 150px;
+   }
   .chart-columns {
     margin-bottom: 220px;
     .half-wide-left {
@@ -131,5 +149,7 @@ table{
      font-size: 18pt;
    }
 }
+
+
 
 

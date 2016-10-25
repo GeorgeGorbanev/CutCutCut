@@ -7,7 +7,9 @@ class LinksController < ApplicationController
         render plain: "Error: wrong link format"
         return nil
       end
-      render plain: "Success! Your link: " + params[:input_link] + " was cutted to " + root_url + new_link + "<br/>"
+      render plain: "Your new link: "+ "<span id = \"new_url\">" + root_url + new_link + "  </span>" +
+          "<a class = \"btn-clipboard\" data-clipboard-target=\"#new_url\"><span class=\"glyphicon glyphicon-copy\" aria-hidden=\"true\"></span>Click to copy</a>"
+
     elsif params[:type] == "custom"
       result = Link.custom_create params[:user].to_i, params[:child_link], params[:parent_link], params[:generate]
       if !result
@@ -15,7 +17,8 @@ class LinksController < ApplicationController
         return nil
       end
       render plain: "Error! Your link: " + root_url + params[:child_link] + " already exsist" if result == nil
-      render plain: "<span id = mssg> Success! Your new link: " + root_url + result 
+      render plain: "Success! Your new link: " + "<span id = \"new_url\">" + root_url + result + "</span>  " +
+          "<a class = \"btn-clipboard\" data-clipboard-target=\"#new_url\"><span class=\"glyphicon glyphicon-copy\" aria-hidden=\"true\"></span>Click to copy</a>"
     end
   end
 
@@ -43,10 +46,29 @@ class LinksController < ApplicationController
                                    @links_table = Link.last_table(params)
   end
 
-  def link_info
-      @table_transactions = Transition.where(:link_id => params[:link_id]).reverse_order
-      params[:page] == nil ? @page_number = 1 : @page_number = params[:page].to_i
-      redirect_to root_url + "links/" if @page_number < 1
+  def link_info # здесь не совсем rails way, слишком много вложений и логика топорная. позже исправить, если будет время
+      @link_record = Link.find_by id: params[:link_id]
+      if @link_record != nil                                                               # существует запись
+        if @link_record[:user_id] != 1                                                     # приватная запись
+          if current_user                                                                  # пользователь залогинен
+           if current_user.id == @link_record[:user_id]                                    # имеет доступ к ссылке
+             @table_transactions = Transition.where(:link_id => params[:link_id]).reverse_order
+             params[:page] == nil ? @page_number = 1 : @page_number = params[:page].to_i
+             redirect_to root_url + "links/" if @page_number < 1
+           else
+             redirect_to root_url
+           end
+          else
+            redirect_to root_url
+          end
+        else                                                                               # запись публичная
+         @table_transactions = Transition.where(:link_id => params[:link_id]).reverse_order
+         params[:page] == nil ? @page_number = 1 : @page_number = params[:page].to_i
+         redirect_to root_url + "links/" if @page_number < 1
+        end
+      else
+        redirect_to root_url
+      end
   end
 
-end
+  end

@@ -4,21 +4,22 @@
                                  provide(:title, 'Public tools | Last links  — page ' + @page_number.to_s ) %>
  <% @pages_count = @links_table.count/10 %>
  <% @pages_count += 1 if @links_table.count%10 != 0 %>
+ <script>new Clipboard('.btn-clipboard'); </script>
  <table>
-   <th width="30px">Copy</th>
+   <th width="45px">Copy</th>
    <th width="auto">Parent link</th>
-   <th width="20px">Copy</th>
-   <th width="auto">Child link</th>
+   <th width="45px">Copy</th>
+   <th width="200px">Child link</th>
    <th width="70px">Clicks</th>
    <th width="150px">Created</th>
-   <th width="40px"></th>
+   <th width="60px"></th>
    <% for i in 0..params[:rows]%>
        <% if @links_table[i + (@page_number-1)*9] != nil %>
         <tr class="<% if (i%2 != 0)%>even"><% else %>uneven"><% end%>
-        <td class="tdcenter"><span class="glyphicon glyphicon glyphicon-copy" aria-hidden="true"></span></td>
-        <td><%= @links_table[i + (@page_number-1)*9].parent_link %></td>
-        <td class="tdcenter"><span class="glyphicon glyphicon glyphicon-copy" aria-hidden="true"></span></td>
-        <td><%= root_url + @links_table[i + (@page_number-1)*9].id %></td>
+        <td class="tdcenter"><button class ="btn-clipboard" data-clipboard-target="#parent<%=i%>"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span></button></td>
+        <td id="parent<%=i%>"><%= @links_table[i + (@page_number-1)*9].parent_link %></td>
+        <td class="tdcenter"><button class ="btn-clipboard" data-clipboard-target="#child<%=i%>"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span></button></td>
+        <td id="child<%=i%>"><%= root_url + @links_table[i + (@page_number-1)*9].id %></td>
         <td class="tdcenter"><%= @links_table[i + (@page_number-1)*9].click_count %></td>
         <td><%= @links_table[i + (@page_number-1)*9].created_at.strftime("%d.%m.%Y %H:%M") %></td>
         <td><a href="<%= links_path + "/" + @links_table[i + (@page_number-1)*9].id %>">more...</a></td>
@@ -26,7 +27,7 @@
        <% end %>
    <%end%>
  </table>
- <%= render  'layouts/paginate'%>
+ <%= render 'layouts/paginate'%>
 <% else %>
  <p> Such links is not exist.</p>
 <% end %>
