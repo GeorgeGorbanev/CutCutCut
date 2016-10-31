@@ -1,5 +1,5 @@
 class Link < ApplicationRecord
-
+  self.primary_key = :id
   COMMON_LENGTH = 6
 
   def self.custom_create user_id, child, parent, random
