@@ -39,5 +39,33 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
     add_index :users, :reset_password_token, unique: true
     # add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true
+
+    create_table :links, :id => false do |t|
+      t.belongs_to :user, index: true, :foreign_key => :id
+      t.string :id, null: false, unique: true
+      t.string :parent_link,              null: false
+      t.string :name, null: true, default: ""
+      t.references :user
+
+      t.timestamps
+    end
+
+
+    add_foreign_key :links, :users
+
+    add_index :links, :name
+    add_index :links, :id
+    add_index :links, :parent_link
+
+    create_table :transitions do |t|
+      t.belongs_to :link, index: true, :foreign_key => :id
+      t.string :link_id
+      t.string :ip
+      t.string :browser
+      t.string :platform
+      t.timestamps
+    end
+
+    add_column :links, :click_count, :integer, :default => 0
   end
 end
