@@ -58,8 +58,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
     add_index :links, :parent_link
 
     create_table :transitions do |t|
+      t.belongs_to :link,  index: true, primary_key: "id", foreign_key: :link_id
       t.string :link_id, null: false, unique: true
-      t.belongs_to :link,  index: true, primary_key: "id", foreign_key: true
       t.string :ip
       t.string :browser
       t.string :platform
