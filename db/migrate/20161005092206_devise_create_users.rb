@@ -61,10 +61,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :ip
       t.string :browser
       t.string :platform
+      t.string :link_id, index: true, null: false, unique: true
       t.timestamps
     end
 
-    add_foreign_key :transitions, :links, column: :link_id, primary_key: "id"
-    
+    add_foreign_key :transitions, :links, column: :link_id, primary_key: :id
+
   end
 end
