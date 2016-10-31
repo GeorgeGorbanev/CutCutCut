@@ -35,6 +35,8 @@ gem 'chartkick'
 
 gem 'jquery-turbolinks'
 
+gem 'groupdate'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
