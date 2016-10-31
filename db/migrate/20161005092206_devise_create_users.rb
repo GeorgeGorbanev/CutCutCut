@@ -48,7 +48,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.integer :click_count, default: 0
       t.timestamps
     end
-    execute "ALTER TABLE table ADD PRIMARY KEY (id);"
+    execute "ALTER TABLE links ADD PRIMARY KEY (id);"
 
 
     add_foreign_key :links, :users
