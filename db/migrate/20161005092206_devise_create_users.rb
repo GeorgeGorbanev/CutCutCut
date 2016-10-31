@@ -41,11 +41,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
     # add_index :users, :unlock_token,         unique: true
 
     create_table :links, :id => false do |t|
+      t.belongs_to :user, index: true
       t.string :id, null: false, unique: true
       t.string :parent_link,              null: false
       t.string :name, null: true, default: ""
       t.integer :click_count, default: 0
-      t.integer :user_id, null: false
       t.timestamps
     end
 
@@ -57,11 +57,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
     add_index :links, :parent_link
 
     create_table :transitions do |t|
-      t.string :link_id
+      t.belongs_to :link, index: true
       t.string :ip
       t.string :browser
       t.string :platform
-      t.string :link_id
       t.timestamps
     end
 
