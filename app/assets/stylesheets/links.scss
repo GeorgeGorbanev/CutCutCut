@@ -122,6 +122,9 @@ table{
   text-align: left;
   .jumbotron{
       ul{
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
         color: #2E2F30;
         font: 14pt Helvetica;
         list-style-type: none;

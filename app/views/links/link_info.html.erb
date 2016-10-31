@@ -13,7 +13,9 @@
         </ul>
      </div>
    <h2><%= @table_transactions.count %> clicks</h2>
-   <%= area_chart @table_transactions.group(:created_at).sum(:id), width: "100%", height: "100%"%>
+   <%= area_chart @table_transactions.group(:created_at).sum(:id),
+                  :hAxis => {:format => "dd"}, :min => 1,
+                  width: "100%", height: "100%"%>
    <div class="chart-columns">
     <div class = "half-wide-left">
       <h2>Platform</h2>

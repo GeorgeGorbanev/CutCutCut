@@ -12,11 +12,11 @@ class Link < ApplicationRecord
     if random == "on"
       return generate parent, user_id
     else
-      if Link.find_by(:id => child) == nil
+      if Link.find_by(:id => child) == nil && child != "about" && child != "contact" && child != "links" && child != "home" && child != "users"
         Link.create :id => child, :parent_link => parent, :user_id => user_id
         return child
       else
-        return nil
+        return "Already exist"
       end
     end
   end
@@ -59,7 +59,7 @@ class Link < ApplicationRecord
     links_table = Link.where(search_query, "%" + params[:input_link] +"%", user_id).order("created_at DESC")
     return links_table
   end
-
+  
   def self.url_validation string
     require 'uri'
     if string =~ URI::regexp

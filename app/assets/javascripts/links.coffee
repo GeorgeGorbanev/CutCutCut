@@ -22,7 +22,7 @@ $ ->
      regex = new RegExp(pathexpression)
      if !$('#checkbox-generate').is(':checked')
        if regex.test($('#child_link').val())                                             #child -- ok
-         console.log "VSE NORm"
+         console.log "URL right format"
        else                                                                             #child -- ne ok
         valid = false
         $('#mssg').empty()
@@ -50,7 +50,9 @@ $ ->
        $('#parent_link').val('')
        $('#child_link').val('')
        $('#mssg').attr('class', 'alert alert-success')
-     return
+     if data.indexOf("already") != -1
+       $('#mssg').val('Sorry, this child link already exist')
+       $('#mssg').attr('class', 'alert alert-danger')
   return
 
 

@@ -3,8 +3,7 @@
  valid = false
  $ ->
   $('#anon_cut_submit').on 'click', ->
-   urlexpression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi
-   regex = new RegExp(urlexpression)
+   regex = new RegExp("(?:(?:ht|f)tps?://)?(?:[\\-\\w]+:[\\-\\w]+@)?(?:[0-9a-z][\\-0-9a-z]*[0-9a-z]\\.)+[a-z]{2,6}(?::\\d{1,5})?(?:[?/\\\\#][?!^$.(){}:|=[\\]+\\-/\\\\*;&~#@,%\\wА-Яа-я]*)?")
    if ($('#input_link').val().match(regex))
      valid = true
    else
@@ -19,4 +18,7 @@
      $('#result_new_link').empty()
      $('#result_new_link').append(data)
      $('#result_new_link').attr('class', 'alert alert-success')
+     if data.indexOf("Error") != -1
+       $('#mssg').attr('class', 'alert alert-danger')
+     return
    return

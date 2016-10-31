@@ -9,21 +9,23 @@ class LinksController < ApplicationController
       end
       render plain: "Your new link: "+ "<span id = \"new_url\">" + root_url + new_link + "  </span>" +
           "<a class = \"btn-clipboard\" data-clipboard-target=\"#new_url\"><span class=\"glyphicon glyphicon-copy\" aria-hidden=\"true\"></span>Click to copy</a>"
-
     elsif params[:type] == "custom"
       result = Link.custom_create params[:user].to_i, params[:child_link], params[:parent_link], params[:generate]
       if !result
         render plain: "Error: wrong child format"
         return nil
       end
-      render plain: "Error! Your link: " + root_url + params[:child_link] + " already exsist" if result == nil
+      if result == "Already exist"
+        render plain: "Sorry, your link: " + root_url + params[:child_link] + " is already exist"
+        return
+      end
       render plain: "Success! Your new link: " + "<span id = \"new_url\">" + root_url + result + "</span>  " +
           "<a class = \"btn-clipboard\" data-clipboard-target=\"#new_url\"><span class=\"glyphicon glyphicon-copy\" aria-hidden=\"true\"></span>Click to copy</a>"
     end
   end
 
   def redirect_user_link
-      requested_link = Link.find params[:path]
+      requested_link = Link.find_by id: params[:path]
       if requested_link != nil
         user_agent = Browser.new request.env['HTTP_USER_AGENT']
         Transition.create link_id: params[:path],
@@ -34,7 +36,7 @@ class LinksController < ApplicationController
         requested_link.save
         redirect_to requested_link.parent_link
       else
-        render plain: "404"
+        render file: "#{Rails.root}/public/404.html", layout: false, status: 404
       end
   end
 
