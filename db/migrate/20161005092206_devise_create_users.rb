@@ -45,6 +45,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :id, null: false, unique: true
       t.string :parent_link,              null: false
       t.string :name, null: true, default: ""
+      t.integer :click_count, default: 0
       t.references :user
 
       t.timestamps
@@ -65,7 +66,5 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :platform
       t.timestamps
     end
-
-    add_column :links, :click_count, :integer, :default => 0
   end
 end
