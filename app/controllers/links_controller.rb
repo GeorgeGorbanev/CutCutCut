@@ -28,11 +28,12 @@ class LinksController < ApplicationController
       requested_link = Link.find_by id: params[:path]
       if requested_link != nil
         user_agent = Browser.new request.env['HTTP_USER_AGENT']
+        requested_link.click_count += 1
         Transition.create link_id: params[:path],
                           ip: request.remote_ip,
                           browser: user_agent,
-                          platform: user_agent.platform
-        requested_link.click_count += 1
+                          platform: user_agent.platform,
+                          click_number: requested_link.click_count
         requested_link.save
         redirect_to requested_link.parent_link
       else

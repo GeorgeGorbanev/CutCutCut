@@ -63,6 +63,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :ip
       t.string :browser
       t.string :platform
+      t.integer :click_number
       t.timestamps
     end
 
