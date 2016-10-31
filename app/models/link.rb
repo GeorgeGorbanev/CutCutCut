@@ -59,7 +59,7 @@ class Link < ApplicationRecord
     links_table = Link.where(search_query, "%" + params[:input_link] +"%", user_id).order("created_at DESC")
     return links_table
   end
-  
+
   def self.url_validation string
     require 'uri'
     if string =~ URI::regexp
