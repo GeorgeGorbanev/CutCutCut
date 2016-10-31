@@ -41,7 +41,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
     # add_index :users, :unlock_token,         unique: true
 
     create_table :links, :id => false do |t|
-      t.belongs_to :user, index: true, :foreign_key => :id
       t.string :id, null: false, unique: true
       t.string :parent_link,              null: false
       t.string :name, null: true, default: ""
@@ -58,7 +57,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
     add_index :links, :parent_link
 
     create_table :transitions do |t|
-      t.belongs_to :link, index: true, :foreign_key => :id
       t.string :link_id
       t.string :ip
       t.string :browser
