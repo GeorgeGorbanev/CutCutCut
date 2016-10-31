@@ -2,10 +2,6 @@ class Link < ApplicationRecord
 
   COMMON_LENGTH = 6
 
-  self.primary_key = :id
-  belongs_to :user
-  has_many :transitions
-
   def self.custom_create user_id, child, parent, random
     return nil if !Link.url_validation parent
     return nil if Link.child_validation child == false && random == "off"
