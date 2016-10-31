@@ -64,8 +64,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_foreign_key :transitions, :links
-
-    add_index :transitions, :links
+    add_foreign_key :transitions, :links, column: :link_id, primary_key: "id"
+    
   end
 end
