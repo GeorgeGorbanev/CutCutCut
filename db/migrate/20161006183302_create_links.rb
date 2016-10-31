@@ -5,10 +5,12 @@ class CreateLinks < ActiveRecord::Migration[5.0]
       t.string :id, null: false, unique: true
       t.string :parent_link,              null: false
       t.string :name, null: true, default: ""
-      #t.references :user
+      t.references :user
 
       t.timestamps
     end
+
+    add_foreign_key :links, :users
 
     add_index :links, :name
     add_index :links, :id
