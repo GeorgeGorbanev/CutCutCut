@@ -66,6 +66,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
 
     add_foreign_key :transitions, :links
 
-    add_index :transitions, :link_id
+    add_index :transitions, :links
   end
 end
