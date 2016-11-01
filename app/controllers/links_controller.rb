@@ -55,7 +55,7 @@ class LinksController < ApplicationController
         if @link_record[:user_id] != 1                                                     # приватная запись
           if current_user                                                                  # пользователь залогинен
            if current_user.id == @link_record[:user_id]                                    # имеет доступ к ссылке
-             @table_transactions = Transition.find_by(link_id: params[:link_id]).reverse_order
+             @table_transactions = Transition.find_by(link_id: params[:link_id])
              params[:page] == nil ? @page_number = 1 : @page_number = params[:page].to_i
              redirect_to root_url + "links/" if @page_number < 1
            else
@@ -65,7 +65,7 @@ class LinksController < ApplicationController
             redirect_to root_url
           end
         else                                                                               # запись публичная
-         @table_transactions = Transition.find_by(link_id: params[:link_id]).reverse_order
+         @table_transactions = Transition.find_by(link_id: params[:link_id])
          params[:page] == nil ? @page_number = 1 : @page_number = params[:page].to_i
          redirect_to root_url + "links/" if @page_number < 1
         end
