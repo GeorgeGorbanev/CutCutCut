@@ -17,11 +17,11 @@
    <div class="chart-columns">
     <div class = "half-wide-left">
       <h2>Platform</h2>
-
+      <%= pie_chart @table_transactions.unscoped.group(:platform).count, width: "100%", height: "100%"%>
     </div>
    <div class = "half-wide-right">
       <h2>Browser</h2>
-
+      <%= bar_chart @table_transactions.unscoped.group(:browser).count, width: "100%", height: "100%"%>
    </div>
   </div>
   <h1>Details</h1>
@@ -38,7 +38,7 @@
                 <tr class="<% if (i%2 != 0)%>even"><% else %>uneven"><% end%>
                 <td><%= @table_transactions[i + (@page_number-1)*9].click_number%></td>
                 <td><%= @table_transactions[i + (@page_number-1)*9].created_at.strftime("%d.%m.%Y %H:%M") %></td>
-                <td><%= @table_transactions[i + (@page_number-1)*9].ip %></td>
+                <td><%=  @table_transactions[i + (@page_number-1)*9].ip %></td>
                 <td><%= @table_transactions[i + (@page_number-1)*9].platform %></td>
                 <td><%= @table_transactions[i + (@page_number-1)*9].browser %> </td>
                 </tr>
