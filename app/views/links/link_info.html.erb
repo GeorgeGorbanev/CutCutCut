@@ -13,7 +13,7 @@
         </ul>
      </div>
    <h2><%= @table_transactions.count %></h2>
-   <%= area_chart Transition.where(:link_id => params[:link_id]).unscoped.group(:created_at).sum(:click_number).reverse_order, width: "100%", height: "100%"%>
+   <%= area_chart Transition.where(:link_id => params[:link_id]).unscoped.group(:created_at).sum(:click_number), width: "100%", height: "100%"%>
    <div class="chart-columns">
     <div class = "half-wide-left">
       <h2>Platform</h2>
